@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+
+	<node pkg="eva_security_msgs" type="obstacle_avoidance_node.py" name="eva_security_obstacle_avoidance_node" output="screen" >
+	
+		<rosparam file="$(find eva_security_msgs)/params/obstacle_avoidance_params.yaml" command="load" />
+	
+	</node>
+
+</launch>

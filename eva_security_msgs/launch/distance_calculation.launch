@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+	<node pkg="eva_security_msgs" type="distance_calculation_node.py" name="distance_calculation_node" output="screen"/>
+
+</launch>

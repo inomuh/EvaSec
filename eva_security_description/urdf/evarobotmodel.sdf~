@@ -1,0 +1,1815 @@
+<?xml version="1.0"?>
+	<sdf version="1.4">    
+    <model name="evarobotmodel">
+		<link name="base_link">
+			<pose>0 0 0 0 0 0</pose>
+			<collision name="base"> 
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.40 0.30 0.30</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="base_visual">
+				<pose>0.065 -0.11 -0.15 0 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/base.dae</uri>
+						<scale>1 1 1</scale>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/FlatBlack</name>
+					</script>
+				</material>
+			</visual>
+			<inertial>
+				<pose> 0 0 0 0 0 0</pose>
+				<mass>10</mass>
+				<inertia>
+					<ixx>1</ixx>
+					<iyy>1</iyy>
+					<izz>1</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<link name="basecolor_link">
+			<pose>0 0 0 0 0 0</pose>
+			<collision name="base_color">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.0001 0.0001 0.0001</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="base_color_visual">
+				<pose>0.065 -0.11 -0.15 0 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/base_orange.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Orange</name>
+					</script>
+				</material>
+			</visual>
+			<inertial>
+				<mass>0.0001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="basecolor_joint" type="revolute">
+			<child>basecolor_link</child>
+			<parent>base_link</parent>
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>
+				<limit>
+					<upper>0</upper>
+					<lower>0</lower>
+				</limit>				
+			</axis>
+		</joint>
+		<link name="left_wheel_link">
+			<pose>0 0.16 -0.119 0 0 0</pose>	  
+			<collision name="left_wheel">
+				<pose>0 0 0 1.57075 0 0</pose>
+				<geometry>
+					<cylinder>
+						<length>0.035</length>
+						<radius>0.085</radius>
+					</cylinder>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>1</mu>
+							<mu2>1</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>
+			</collision>
+			<visual name="left_wheel_visual">
+				<pose>0 0 0 0 0 1.57079632679</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/rim.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Grey</name>
+					</script>					
+				</material>		
+			</visual>
+			<inertial>
+				<pose>0 0 0 1.57075 0 0</pose>
+				<inertia>
+					<ixx>0.001</ixx>
+					<iyy>0.001</iyy>
+					<izz>0.001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+				<mass>0.85</mass>			
+			</inertial>
+		</link>
+		<joint name="left_wheel_joint" type="revolute">
+			<parent>base_link</parent>
+			<child>left_wheel_link</child>
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis> 
+		</joint>
+		<link name="left_wheel_tire_link">
+			<pose>0 0.16 -0.119 0 0 0</pose>
+			<collision name="left_wheel_tire">
+				<pose>0 0 0 1.57075 0 0</pose>
+				<geometry>
+					<cylinder>
+						<length>0.001</length>
+						<radius>0.001</radius>
+					</cylinder>
+				</geometry>			
+			</collision>	
+			<visual name="left_wheel_tire_visual">
+				<pose>0 0 0 0 0 1.57079632679</pose>
+				<geometry>
+					<mesh> 
+						<uri>model://evarobotmodel_description/meshes/tire.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Black</name>
+					</script>					
+				</material>					
+			</visual>		
+			<inertial>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.001</ixx>
+					<iyy>0.001</iyy>
+					<izz>0.001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+				<mass>0.001</mass>			
+			</inertial>			
+		</link>
+		<joint name="left_wheel_tire_joint" type="revolute">
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+			<parent>left_wheel_link</parent>
+			<child>left_wheel_tire_link</child>
+			<pose>0 0 0 0 0 0</pose>
+		</joint>	
+	
+		<link name="right_wheel_link">
+			<pose>0 -0.16 -0.119 0 0 0</pose>	  
+			<collision name="right_wheel">
+				<pose>0 0 0 1.57075 0 0</pose>
+				<geometry>
+					<cylinder>
+						<length>0.035</length>
+						<radius>0.085</radius>
+					</cylinder>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>1</mu>
+							<mu2>1</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>
+			</collision>
+			<visual name="right_wheel_visual">
+				<pose>0 0 0 0 0 1.57079632679</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/rim.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Grey</name>
+					</script>					
+				</material>		
+			</visual>
+			<inertial>
+				<pose>0 0 0 1.57075 0 0</pose>
+				<inertia>
+					<ixx>0.001</ixx>
+					<iyy>0.001</iyy>
+					<izz>0.001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+				<mass>0.85</mass>			
+			</inertial>
+		</link>
+		<joint name="right_wheel_joint" type="revolute">
+			<parent>base_link</parent>
+			<child>right_wheel_link</child>
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis> 
+		</joint>
+		<link name="right_wheel_tire_link">
+			<pose>0 -0.16 -0.119 0 0 0</pose>
+			<collision name="right_wheel_tire">
+				<pose>0 0 0 1.57075 0 0</pose>
+				<geometry>
+					<cylinder>
+						<length>0.001</length>
+						<radius>0.001</radius>
+					</cylinder>
+				</geometry>			
+			</collision>	
+			<visual name="right_wheel_tire_visual">
+				<pose>0 0 0 0 0 1.57079632679</pose>
+				<geometry>
+					<mesh> 
+						<uri>model://evarobotmodel_description/meshes/tire.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Black</name>
+					</script>					
+				</material>					
+			</visual>		
+			<inertial>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.001</ixx>
+					<iyy>0.001</iyy>
+					<izz>0.001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+				<mass>0.001</mass>			
+			</inertial>			
+		</link>
+		<joint name="right_wheel_tire_joint" type="revolute">
+			<axis>
+				<xyz>0 1 0</xyz>
+			</axis>
+			<parent>right_wheel_link</parent>
+			<child>right_wheel_tire_link</child>
+			<pose>0 0 0 0 0 0</pose>
+		</joint>	
+		<link name="front_caster_base_link">
+			<pose>0.1604 0 -0.15675 0 0 0</pose>
+			<collision name="front_caster">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.06 0.06 0.0135</size>
+					</box>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>			
+			</collision>
+			<visual name="front_caster_visual">
+				<pose>-0.005 -0.01075 0.00675 3.1415926535897931 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/caster_base.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Grey</name>
+					</script>					
+				</material>				
+			</visual>
+			<inertial>
+				<mass>0.01</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="front_caster_base_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>
+				<limit>
+					<upper>0</upper>
+					<lower>0</lower>
+				</limit>			
+			</axis>
+			<child>front_caster_base_link</child>
+			<parent>base_link</parent>
+		</joint>
+		<link name="front_caster_rotate_link">
+			<pose>0.1604 0 -0.175153 0 0 0</pose>
+			<collision name="front_caster_rotate">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<cylinder>
+						<length>0.023</length>
+						<radius>0.0215</radius>
+					</cylinder>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>					
+			</collision>
+			<visual name="front_caster_rotate_visual">
+				<pose>0 0 0.01 3.1415926535897931 0 1.57079632679</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/caster_rot.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Grey</name>
+					</script>
+				</material>				
+			</visual>
+			<inertial>
+				<mass>0.01</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="front_caster_rotate_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 1</xyz>
+			</axis>
+			<child>front_caster_rotate_link</child>
+			<parent>front_caster_base_link</parent>
+		</joint>
+		<link name="front_caster_wheel_link">
+			<pose>0.145828 0 -0.186445 0 0 0</pose>
+			<collision name="front_caster_wheel">
+				<pose>0 0 0 1.57079632679 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.0175</radius>
+					</sphere>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>				
+			</collision>
+			<visual name="front_caster_wheel_visual">
+				<pose>0 0 0 1.57079632679 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.0175</radius>
+					</sphere>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Yellow</name>
+					</script>
+				</material>				
+			</visual>
+			<inertial>
+				<mass>0.01</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="front_caster_wheel_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0.577350269 0.577350269 0.577350269</xyz>
+			</axis>
+			<child>front_caster_wheel_link</child>
+			<parent>front_caster_rotate_link</parent>
+		</joint>
+		<link name="rear_caster_base_link">
+			<pose>-0.1604 0 -0.15675 0 0 0</pose>
+			<collision name="rear_caster">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.06 0.06 0.0135</size>
+					</box>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>			
+			</collision>
+			<visual name="rear_caster_visual">
+				<pose>-0.005 -0.01075 0.00675 3.1415926535897931 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/caster_base.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Grey</name>
+					</script>					
+				</material>				
+			</visual>
+			<inertial>
+				<mass>0.01</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="rear_caster_base_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>
+				<limit>
+					<upper>0</upper>
+					<lower>0</lower>
+				</limit>			
+			</axis>
+			<child>rear_caster_base_link</child>
+			<parent>base_link</parent>
+		</joint>
+		<link name="rear_caster_rotate_link">
+			<pose>-0.1604 0 -0.175153 0 0 0</pose>
+			<collision name="rear_caster_rotate">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<cylinder>
+						<length>0.023</length>
+						<radius>0.0215</radius>
+					</cylinder>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>					
+			</collision>
+			<visual name="rear_caster_rotate_visual">
+				<pose>0 0 0.01 3.1415926535897931 0 1.57079632679</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/caster_rot.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Grey</name>
+					</script>
+				</material>				
+			</visual>
+			<inertial>
+				<mass>0.01</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="rear_caster_rotate_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 1</xyz>
+			</axis>
+			<child>rear_caster_rotate_link</child>
+			<parent>rear_caster_base_link</parent>
+		</joint>
+		<link name="rear_caster_wheel_link">
+			<pose>-0.174972 0 -0.186445 0 0 0</pose>
+			<collision name="rear_caster_wheel">
+				<pose>0 0 0 1.57079632679 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.0175</radius>
+					</sphere>
+				</geometry>
+				<surface>
+					<friction>
+						<ode>
+							<mu>0</mu>
+							<mu2>0</mu2>
+						</ode>
+					</friction>
+					<contact>
+						<ode>
+							<kp>1000000</kp>
+							<kd>100</kd>
+							<min_depth>0.001</min_depth>
+							<max_vel>1</max_vel>
+						</ode>
+					</contact>
+				</surface>				
+			</collision>
+			<visual name="rear_caster_wheel_visual">
+				<pose>0 0 0 1.57079632679 0 0</pose>
+				<geometry>
+					<sphere>
+						<radius>0.0175</radius>
+					</sphere>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Yellow</name>
+					</script>
+				</material>				
+			</visual>
+			<inertial>
+				<mass>0.01</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<joint name="rear_caster_wheel_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0.577350269 0.577350269 0.577350269</xyz>
+			</axis>
+			<child>rear_caster_wheel_link</child>
+			<parent>rear_caster_rotate_link</parent>
+		</joint>
+		<link name="camera_link">
+			<pose>0.17 0 0.1913 0 0 0</pose>		
+			<collision name="camera">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.0730 0.2760 0.0720</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="camera_visual">
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/xtion_pro_camera.dae</uri>
+					</mesh>
+				</geometry>		
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/DarkGrey</name>
+					</script>
+				</material>			
+			</visual>
+			<inertial>
+				<mass>0.170</mass>
+				<pose>0 0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.001152600</ixx>
+					<iyy>0.000148934</iyy>
+					<izz>0.001154654</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+			<sensor name="camera" type="depth">
+				<always_on>1</always_on>
+				<update_rate>20</update_rate>
+				<camera>
+					<horizontal_fov>1.0471975512</horizontal_fov>
+					<image>
+						<format>R8G8B8</format>
+						<width>640</width>
+						<height>480</height>
+					</image>
+					<clip>
+						<near>0.05</near>
+						<far>8</far>
+					</clip>
+				</camera>
+				<plugin name="kinect_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+					<cameraName>camera</cameraName>
+					<alwaysOn>true</alwaysOn>
+					<updateRate>10</updateRate>
+					<imageTopicName>rgb/image_raw</imageTopicName>
+					<depthImageTopicName>depth/image_raw</depthImageTopicName>
+					<pointCloudTopicName>depth/points</pointCloudTopicName>
+					<cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+					<depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+					<frameName>camera_depth_optical_frame</frameName>
+					<baseline>0.1</baseline>
+					<pointCloudCutoff>0.4</pointCloudCutoff>
+					<distortionK1>0.00000001</distortionK1>
+					<distortionK2>0.00000001</distortionK2>
+					<distortionK3>0.00000001</distortionK3>
+					<distortionT1>0.00000001</distortionT1>
+					<distortionT2>0.00000001</distortionT2>
+					<CxPrime>0</CxPrime>
+					<Cx>0</Cx>
+					<Cy>0</Cy>
+					<focalLength>0</focalLength>
+					<hackBaseline>0</hackBaseline>-->
+				</plugin>
+			</sensor>
+		</link>	
+		<joint name="camera_joint" type="revolute">
+			<child>camera_link</child>
+			<parent>base_link</parent>
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>
+				<limit>
+					<upper>0</upper>
+					<lower>0</lower>
+				</limit>			
+			</axis>
+		</joint>
+		<link name="mount_asus_xtion_pro_link">
+			<pose>0.1685 -0.0050 0.1563 1.57079632679 0 -1.57079632679</pose>		
+			<collision name="mount_asus">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.2760 0.033 0.012</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="mount_visual">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://evarobotmodel_description/meshes/asus_base.dae</uri>
+					</mesh>
+				</geometry>				
+					<material>
+						<script>
+							<uri>file://media/materials/scripts/gazebo.material</uri>
+							<name>Gazebo/DarkGrey</name>
+						</script>
+					</material>						
+			</visual>
+			<inertial>
+				<mass>0.17</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.001152600</ixx>
+					<iyy>0.000148934</iyy>
+					<izz>0.001154654</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>		
+		<joint name="mount_asus_xtion_pro_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<child>mount_asus_xtion_pro_link</child>
+			<parent>base_link</parent>
+			<axis>
+				<xyz>0 0 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>				
+			</axis>
+		</joint>
+		<link name="camera_rgb_frame"></link>
+		<joint name="camera_rgb_joint" type="revolute">
+			<pose>0 -0.02 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>	
+				<limit>
+					<upper>0</upper>
+					<lower>0</lower>
+				</limit>											
+			</axis>
+			<child>camera_rgb_frame</child>
+			<parent>camera_link</parent>
+		</joint>
+		<link name="camera_rgb_optical_frame"></link>
+		<joint name="camera_rgb_optical_joint" type="revolute">
+			<pose>0 0 0 -1.57079632679 0 -1.57079632679</pose>
+			<axis>
+				<xyz>0 0 0</xyz>			
+				<limit>
+					<upper>0</upper>
+					<lower>0</lower>
+				</limit>							
+			</axis>
+			<child>camera_rgb_optical_frame</child>
+			<parent>camera_rgb_frame</parent>
+		</joint>
+		<link name="camera_depth_frame"></link>
+		<joint name="camera_depth_joint" type="revolute">
+			<pose>0 -0.045 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>									
+			</axis>
+			<child>camera_depth_frame</child>
+			<parent>camera_link</parent>
+		</joint>
+		<link name="camera_depth_optical_frame"></link>		
+		<joint name="camera_depth_optical_joint" type="revolute">
+			<pose>0 -0.045 0 -1.57079632679 0 -1.57079632679</pose>
+			<axis>
+				<xyz>0 1 0</xyz>								
+			</axis>
+			<child>camera_depth_optical_frame</child>
+			<parent>camera_depth_frame</parent>
+		</joint>
+		
+		<link name="sonar0_link">
+			<pose>0.130 -0.147 0.08 0 0 -1.0471975512</pose>
+			<collision name="sonar0">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar0' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar0_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar0</topicName>
+          <frameName>sonar0_link</frameName>
+          <frameId>sonar0_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+			<joint name="sonar0_joint" type="revolute">
+				<child>sonar0_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>
+		<link name="sonar1_link">
+			<pose>0.213 0.0 0.08 0 0 0</pose>
+			<collision name="sonar1">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar1' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar1_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar1</topicName>
+          <frameName>sonar1_link</frameName>
+          <frameId>sonar1_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+			<joint name="sonar1_joint" type="revolute">
+				<child>sonar1_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>
+		<link name="sonar2_link">
+			<pose>0.130 0.147 0.08 0 0 1.0471975512</pose>
+			<collision name="sonar2">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar2' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar2_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar2</topicName>
+          <frameName>sonar2_link</frameName>
+          <frameId>sonar2_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+			<joint name="sonar2_joint" type="revolute">
+				<child>sonar2_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>
+		<link name="sonar3_link">
+			<pose>-0.045 0.168 0.08 0 0 1.57079632679</pose>
+			<collision name="sonar3">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar3' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar3_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar3</topicName>
+          <frameName>sonar3_link</frameName>
+          <frameId>sonar3_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+			<joint name="sonar3_joint" type="revolute">
+				<child>sonar3_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>					
+		<link name="sonar4_link">
+			<pose>-0.191 0.084 0.08 0 0 2.61799387799</pose>
+			<collision name="sonar4">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar4' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar4_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar4</topicName>
+          <frameName>sonar4_link</frameName>
+          <frameId>sonar4_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+			<joint name="sonar4_joint" type="revolute">
+				<child>sonar4_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>		
+		<link name="sonar5_link">
+			<pose>-0.191 -0.084 0.08 0 0 -2.61799387799</pose>
+			<collision name="sonar5">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar5' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar5_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar5</topicName>
+          <frameName>sonar5_link</frameName>
+          <frameId>sonar5_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+			<joint name="sonar5_joint" type="revolute">
+				<child>sonar5_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>
+		<link name="sonar6_link">
+			<pose>-0.045 -0.168 0.08 0 0 -1.57079632679</pose>
+			<collision name="sonar6">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar6' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <plugin name='sonar6_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>sonar6</topicName>
+          <frameName>sonar6_link</frameName>
+          <frameId>sonar6_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>
+		</link>			
+		<joint name="sonar6_joint" type="revolute">
+				<child>sonar6_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>		
+	<link name="lidar_link">
+		<pose>-0.15 0 0.5415 0 0 3.1415926535897931</pose>
+		<collision name="lidar_collision">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.1 0.1 0.1</size>
+				</box>
+			</geometry>
+		</collision>
+		<visual name="lidar_visual">
+			<pose>-0.055 -0.11 -0.05 -1.57079632679 3.1415926535897931 0</pose>
+			<geometry>
+				<mesh>
+					<uri>model://evarobotmodel_description/meshes/rplidar.dae</uri>
+					<scale>0.001 0.001 0.001</scale>
+				</mesh>
+			</geometry>
+			<material>
+				<script>
+					<uri>file://media/materials/scripts/gazebo.material</uri>
+					<name>Gazebo/FlatBlack</name>
+				</script>
+			</material>			
+		</visual>
+		<inertial>
+			<mass>0.00001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<ixz>0</ixz>
+			</inertia>
+		</inertial>
+		<sensor name='head_hokuyo_sensor' type='gpu_ray'>
+			<pose>0 0 0 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.1416</min_angle>
+              <max_angle>3.1416</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.5</min>
+            <max>5.0</max>
+            <resolution>0.1</resolution>
+          </range>
+          <noise>
+			<type>gaussian</type>
+			<mean>0</mean>
+			<stddev>0.01</stddev>
+          </noise>          
+        </ray>
+        <plugin name='lidar_controller' filename='libgazebo_ros_gpu_laser.so'>
+          <topicName>lidar</topicName>
+          <frameName>lidar_link</frameName>
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>40</update_rate>
+        <visualize>0</visualize>
+      </sensor>		
+	</link>
+	<joint name="lidar_joint" type="revolute">
+		<pose>0 0 0 0 0 3.14</pose>
+		<axis>
+			<xyz>0 1 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>			
+		</axis>
+		<child>lidar_link</child>
+		<parent>base_link</parent>
+	</joint>
+	<link name="ir0_link">
+		<pose>0.191 -0.084 -0.072 0 0 -0.52359877559</pose>
+		<collision name="ir0">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.01 0.01 0.01</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		<sensor name='ir0' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.001</min_angle>
+              <max_angle>0.001</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>0.80</max>
+            <resolution>0.01</resolution>
+          </range>    
+        </ray>
+        <plugin name='ir0_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>ir0</topicName>
+          <frameName>ir0_link</frameName>
+          <frameId>ir0_link</frameId>          
+		  <radiation>infrared</radiation>
+		  <fov>0.01</fov>
+		  <gaussianNoise>0</gaussianNoise>          
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>			
+	</link>
+	<joint name="ir0_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>1 0 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>ir0_link</child>
+		<parent>base_link</parent>
+	</joint>
+	<link name="ir1_link">
+		<pose>0.191 0.084 -0.072 0 0 0.52359877559</pose>
+		<collision name="ir1">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.01 0.01 0.01</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		<sensor name='ir1' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.001</min_angle>
+              <max_angle>0.001</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>0.80</max>
+            <resolution>0.01</resolution>
+          </range>    
+        </ray>
+        <plugin name='ir1_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>ir1</topicName>
+          <frameName>ir1_link</frameName>
+          <frameId>ir1_link</frameId>          
+		  <radiation>infrared</radiation>
+		  <fov>0.01</fov>
+		  <gaussianNoise>0</gaussianNoise>          
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>			
+	</link>
+	<joint name="ir1_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>1 0 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>ir1_link</child>
+		<parent>base_link</parent>
+	</joint>	
+	<link name="ir2_link">
+		<pose>-0.130 0.147 -0.072 0 0 2.09439510239</pose>
+		<collision name="ir2">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.01 0.01 0.01</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		<sensor name='ir2' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.001</min_angle>
+              <max_angle>0.001</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>0.80</max>
+            <resolution>0.01</resolution>
+          </range>    
+        </ray>
+        <plugin name='ir2_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>ir2</topicName>
+          <frameName>ir2_link</frameName>
+          <frameId>ir2_link</frameId>          
+		  <radiation>infrared</radiation>
+		  <fov>0.01</fov>
+		  <gaussianNoise>0</gaussianNoise>          
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>			
+	</link>
+	<joint name="ir2_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>1 0 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>ir2_link</child>
+		<parent>base_link</parent>
+	</joint>
+	<link name="ir3_link">
+		<pose>-0.130 -0.147 -0.072 0 0 -2.09439510239</pose>
+		<collision name="ir3">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.01 0.01 0.01</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		<sensor name='ir3' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.001</min_angle>
+              <max_angle>0.001</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>0.80</max>
+            <resolution>0.01</resolution>
+          </range>    
+        </ray>
+        <plugin name='ir3_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>ir3</topicName>
+          <frameName>ir3_link</frameName>
+          <frameId>ir3_link</frameId>          
+		  <radiation>infrared</radiation>
+		  <fov>0.01</fov>
+		  <gaussianNoise>0</gaussianNoise>          
+        </plugin>
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+      </sensor>			
+	</link>
+	<joint name="ir3_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>1 0 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>ir3_link</child>
+		<parent>base_link</parent>
+	</joint>
+	<link name="bumper0_link">
+		<pose>0.191 -0.084 -0.072 0 0 -0.52359877559</pose>
+		<collision name="bumper0">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.015 0.015 0.020</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.00001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		 <sensor name='bumper0' type='contact'>
+			<contact>
+				<collision>bumper0</collision>
+			</contact>
+			<plugin name='bumper0_plugin' filename='libim_gazebo_ros_bumper.so'>
+				<bumperTopicName>bumper0</bumperTopicName>
+				<frameName>bumper0_link</frameName> 
+			</plugin>
+			<always_on>1</always_on>
+			<update_rate>10</update_rate>
+			<visualize>0</visualize>
+        </sensor>				
+	</link>		
+    <joint name="bumper0_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>0 1 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>bumper0_link</child>
+		<parent>base_link</parent>		
+    </joint>
+	<link name="bumper1_link">
+		<pose>0.213 0 -0.072 0 0 0</pose>
+		<collision name="bumper1">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.015 0.015 0.020</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.00001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		 <sensor name='bumper1' type='contact'>
+			<contact>
+				<collision>bumper1</collision>
+			</contact>
+			<plugin name='bumper1_plugin' filename='libim_gazebo_ros_bumper.so'>
+				<bumperTopicName>bumper1</bumperTopicName>
+				<frameName>bumper1_link</frameName> 
+			</plugin>
+			<always_on>1</always_on>
+			<update_rate>10</update_rate>
+			<visualize>0</visualize>
+        </sensor>				
+	</link>		
+    <joint name="bumper1_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>0 1 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>bumper1_link</child>
+		<parent>base_link</parent>		
+    </joint>
+	<link name="bumper2_link">
+		<pose>0.191 0.084 -0.072 0 0 0.52359877559</pose>
+		<collision name="bumper2">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.015 0.015 0.020</size>
+				</box>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass>0.00001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.000001</ixx>
+				<iyy>0.000001</iyy>
+				<izz>0.000001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+		 <sensor name='bumper2' type='contact'>
+			<contact>
+				<collision>bumper2</collision>
+			</contact>
+			<plugin name='bumper2_plugin' filename='libim_gazebo_ros_bumper.so'>
+				<bumperTopicName>bumper2</bumperTopicName>
+				<frameName>bumper2_link</frameName> 
+			</plugin>
+			<always_on>1</always_on>
+			<update_rate>10</update_rate>
+			<visualize>0</visualize>
+        </sensor>				
+	</link>		
+    <joint name="bumper2_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>0 1 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>					
+		</axis>
+		<child>bumper2_link</child>
+		<parent>base_link</parent>		
+    </joint>    
+	<link name="imu_link">
+		<pose>0 0 0.19 3.1415926535897931 0 0</pose>
+		<collision name="imu">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.001 0.001 0.001</size>
+				</box>
+			</geometry>
+		</collision>
+		<visual name="imu_visual">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.001 0.001 0.001</size>
+				</box>
+			</geometry>
+		</visual>
+		<inertial>
+			<mass>0.001</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.0001</ixx>
+				<iyy>0.0001</iyy>
+				<izz>0.0001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+    </link>        
+    <joint name="imu_joint" type="revolute">
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>1 0 0</xyz>
+			<limit>
+				<upper>0</upper>
+				<lower>0</lower>
+			</limit>
+		</axis>
+		<child>imu_link</child>
+		<parent>base_link</parent>
+    </joint>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+	    <robotNamespace>/</robotNamespace>
+	  <alwaysOn>1</alwaysOn>
+	  <updateRate>10.0</updateRate> 
+		<robotBaseFrame>base_link</robotBaseFrame>
+		<publishWheelTF>true</publishWheelTF>
+		<publishWheelJointState>true</publishWheelJointState>
+		<wheelAcceleration>1</wheelAcceleration>
+	  <leftJoint>right_wheel_joint</leftJoint>
+	  <rightJoint>left_wheel_joint</rightJoint>
+	  <wheelSeparation>0.33</wheelSeparation>
+	  <wheelDiameter>0.17</wheelDiameter>
+	  <wheelTorque>20</wheelTorque>
+	  <commandTopic>cmd_vel</commandTopic>
+	  <odometryTopic>odom</odometryTopic>
+	  <odometryFrame>odom_combined</odometryFrame>
+    </plugin>    
+			<plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+				<alwaysOn>true</alwaysOn>
+				<robotNamespace>/</robotNamespace>     
+				<frameName>imu_link</frameName>   
+				<bodyName>imu_link</bodyName>
+				<topicName>imu</topicName>
+				<serviceName>imu_service</serviceName>
+				<gaussianNoise>0.0</gaussianNoise>
+				<updateRate>10</updateRate> 
+			</plugin>    
+    <plugin name="MultipleContact" filename="libevarobot_ros_bumper.so"></plugin>
+    </model>
+   </sdf>

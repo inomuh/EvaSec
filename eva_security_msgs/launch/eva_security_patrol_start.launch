@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+	<include file="$(find eva_security_msgs)/launch/distance_calculation.launch"/>
+	<include file="$(find eva_security_msgs)/launch/obstacle_avoidance.launch"/>
+	<include file="$(find eva_security_msgs)/launch/patrol_mission.launch"/>
+</launch>

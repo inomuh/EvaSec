@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+	<node pkg="eva_security_msgs" type="info_service_node.py" name="info_service_node" output="screen"/>
+
+</launch>

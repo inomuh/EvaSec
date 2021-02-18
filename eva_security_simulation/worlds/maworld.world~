@@ -1,0 +1,449 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <model name="eva50">
+		<link name="base_link">
+			<collision name="base"> 
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.40 0.30 0.30</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="base_visual">
+				<pose>0.065 -0.11 -0.15 0 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://my_robot/base.dae</uri>
+						<scale>1 1 1</scale>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/FlatBlack</name>
+					</script>
+				</material>
+			</visual>
+			<inertial>
+				<pose> 0 0 0 0 0 0</pose>
+				<mass>10</mass>
+				<inertia>
+					<ixx>1</ixx>
+					<iyy>1</iyy>
+					<izz>1</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+		</link>
+		<link name="basecolor_link">
+			<pose>0 0 0 0 0 0</pose>
+			<collision name="base_color">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.0001 0.0001 0.0001</size>
+					</box>
+				</geometry>
+			</collision>
+			<visual name="base_color_visual">
+				<pose>0.065 -0.11 -0.15 0 0 0</pose>
+				<geometry>
+					<mesh>
+						<uri>model://my_robot/base_orange.dae</uri>
+					</mesh>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Orange</name>
+					</script>
+				</material>
+			</visual>
+		</link>
+		<joint name="basecolor_joint" type="revolute">
+			<child>basecolor_link</child>
+			<parent>base_link</parent>
+			<pose>0 0 0 0 0 0</pose>
+			<axis>
+				<xyz>0 0 0</xyz>
+			</axis>
+		</joint>
+  <link name="left_wheel_link">
+		<pose>0 0.16 -0.119 0 0 0</pose>	  
+		<collision name="left_wheel">
+			<pose>0 0 0 1.57075 0 0</pose>
+			<geometry>
+				<cylinder>
+					<length>0.035</length>
+					<radius>0.085</radius>
+				</cylinder>
+			</geometry>
+			<surface>
+				<friction>
+					<ode>
+						<mu>1</mu>
+						<mu2>1</mu2>
+					</ode>
+				</friction>
+				<contact>
+					<ode>
+						<kp>1000000</kp>
+						<kd>100</kd>
+						<min_depth>0.001</min_depth>
+						<max_vel>1</max_vel>
+					</ode>
+				</contact>
+			</surface>
+		</collision>
+		<visual name="left_wheel_visual">
+			<pose>0 0 0 0 0 1.57079632679</pose>
+			<geometry>
+				<mesh>
+					<uri>model://my_robot/rim.dae</uri>
+				</mesh>
+			</geometry>
+			<material>
+				<script>
+					<uri>file://media/materials/scripts/gazebo.material</uri>
+					<name>Gazebo/Grey</name>
+				</script>					
+			</material>		
+		</visual>
+		<inertial>
+			<pose>0 0 0 1.57075 0 0</pose>
+			<inertia>
+				<ixx>0.001</ixx>
+				<iyy>0.001</iyy>
+				<izz>0.001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+			<mass>0.85</mass>			
+		</inertial>
+    </link>
+	<joint name="left_wheel_joint" type="revolute">
+		<parent>base_link</parent>
+		<child>left_wheel_link</child>
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>0 1 0</xyz>
+		</axis> 
+	</joint>
+	<link name="left_wheel_tire_link">
+		<pose>0 0.16 -0.119 0 0 0</pose>
+		<collision name="left_wheel_tire">
+			<pose>0 0 0 1.57075 0 0</pose>
+			<geometry>
+				<cylinder>
+					<length>0.001</length>
+					<radius>0.001</radius>
+				</cylinder>
+			</geometry>			
+		</collision>	
+		<visual name="left_wheel_tire_visual">
+			<pose>0 0 0 0 0 1.57079632679</pose>
+			<geometry>
+				<mesh> 
+					<uri>model://my_robot/tire.dae</uri>
+				</mesh>
+			</geometry>
+			<material>
+				<script>
+					<uri>file://media/materials/scripts/gazebo.material</uri>
+					<name>Gazebo/Black</name>
+				</script>					
+			</material>					
+		</visual>		
+		<inertial>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.001</ixx>
+				<iyy>0.001</iyy>
+				<izz>0.001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+			<mass>0.001</mass>			
+		</inertial>			
+	</link>
+	<joint name="left_wheel_tire_joint" type="revolute">
+		<axis>
+			<xyz>0 1 0</xyz>
+		</axis>
+		<parent>left_wheel_link</parent>
+		<child>left_wheel_tire_link</child>
+		<pose>0 0 0 0 0 0</pose>
+	</joint>	
+	
+  <link name="right_wheel_link">
+		<pose>0 -0.16 -0.119 0 0 0</pose>	  
+		<collision name="right_wheel">
+			<pose>0 0 0 1.57075 0 0</pose>
+			<geometry>
+				<cylinder>
+					<length>0.035</length>
+					<radius>0.085</radius>
+				</cylinder>
+			</geometry>
+			<surface>
+				<friction>
+					<ode>
+						<mu>1</mu>
+						<mu2>1</mu2>
+					</ode>
+				</friction>
+				<contact>
+					<ode>
+						<kp>1000000</kp>
+						<kd>100</kd>
+						<min_depth>0.001</min_depth>
+						<max_vel>1</max_vel>
+					</ode>
+				</contact>
+			</surface>
+		</collision>
+		<visual name="right_wheel_visual">
+			<pose>0 0 0 0 0 1.57079632679</pose>
+			<geometry>
+				<mesh>
+					<uri>model://my_robot/rim.dae</uri>
+				</mesh>
+			</geometry>
+			<material>
+				<script>
+					<uri>file://media/materials/scripts/gazebo.material</uri>
+					<name>Gazebo/Grey</name>
+				</script>					
+			</material>		
+		</visual>
+		<inertial>
+			<pose>0 0 0 1.57075 0 0</pose>
+			<inertia>
+				<ixx>0.001</ixx>
+				<iyy>0.001</iyy>
+				<izz>0.001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+			<mass>0.85</mass>			
+		</inertial>
+    </link>
+	<joint name="right_wheel_joint" type="revolute">
+		<parent>base_link</parent>
+		<child>right_wheel_link</child>
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>0 1 0</xyz>
+		</axis> 
+	</joint>
+	<link name="right_wheel_tire_link">
+		<pose>0 -0.16 -0.119 0 0 0</pose>
+		<collision name="right_wheel_tire">
+			<pose>0 0 0 1.57075 0 0</pose>
+			<geometry>
+				<cylinder>
+					<length>0.001</length>
+					<radius>0.001</radius>
+				</cylinder>
+			</geometry>			
+		</collision>	
+		<visual name="right_wheel_tire_visual">
+			<pose>0 0 0 0 0 1.57079632679</pose>
+			<geometry>
+				<mesh> 
+					<uri>model://my_robot/tire.dae</uri>
+				</mesh>
+			</geometry>
+			<material>
+				<script>
+					<uri>file://media/materials/scripts/gazebo.material</uri>
+					<name>Gazebo/Black</name>
+				</script>					
+			</material>					
+		</visual>		
+		<inertial>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.001</ixx>
+				<iyy>0.001</iyy>
+				<izz>0.001</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+			<mass>0.001</mass>			
+		</inertial>			
+	</link>
+	<joint name="right_wheel_tire_joint" type="revolute">
+		<axis>
+			<xyz>0 1 0</xyz>
+		</axis>
+		<parent>right_wheel_link</parent>
+		<child>right_wheel_tire_link</child>
+		<pose>0 0 0 0 0 0</pose>
+	</joint>	
+	<link name="camera_link">
+		<pose>0.17 0 0.1913 0 0 0</pose>		
+		<collision name="camera">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.0730 0.2760 0.0720</size>
+				</box>
+			</geometry>
+		</collision>
+		<visual name="camera_visual">
+			<geometry>
+				<mesh>
+					<uri>model://my_robot/xtion_pro_camera.dae</uri>
+				</mesh>
+			</geometry>		
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/DarkGrey</name>
+					</script>
+				</material>			
+		</visual>
+		<inertial>
+			<mass>0.170</mass>
+			<pose>0 0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.001152600</ixx>
+				<iyy>0.000148934</iyy>
+				<izz>0.001154654</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+	</link>
+	<joint name="camera_joint" type="revolute">
+		<child>camera_link</child>
+		<parent>base_link</parent>
+		<pose>0 0 0 0 0 0</pose>
+		<axis>
+			<xyz>0 0 1</xyz>
+		</axis>
+	</joint>
+	<link name="mount_asus_xtion_pro_link">
+		<pose>0.1685 -0.0050 0.1563 1.57079632679 0 -1.57079632679</pose>		
+		<collision name="mount_asus">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.2760 0.033 0.012</size>
+				</box>
+			</geometry>
+		</collision>
+		<visual name="mount_visual">
+			<pose>0 0 0 0 0 0</pose>
+			<geometry>
+				<mesh>
+					<uri>model://my_robot/asus_base.dae</uri>
+				</mesh>
+			</geometry>				
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/DarkGrey</name>
+					</script>
+				</material>						
+		</visual>
+		<inertial>
+			<mass>0.17</mass>
+			<pose>0 0 0 0 0 0</pose>
+			<inertia>
+				<ixx>0.001152600</ixx>
+				<iyy>0.000148934</iyy>
+				<izz>0.001154654</izz>
+				<ixy>0</ixy>
+				<ixz>0</ixz>
+				<iyz>0</iyz>
+			</inertia>
+		</inertial>
+	</link>		
+		<joint name="mount_asus_xtion_pro_joint" type="revolute">
+			<pose>0 0 0 0 0 0</pose>
+			<child>mount_asus_xtion_pro_link</child>
+			<parent>base_link</parent>
+			<axis>
+				<xyz>0 0 0</xyz>
+			</axis>
+		</joint>
+		<link name="sonar0_link">
+			<pose>0.130 -0.147 0.08 0 0 -1.0471975512</pose>
+			<collision name="sonar0">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.01 0.01 0.01</size>
+					</box>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass>0.001</mass>
+				<pose>0 0 0 0 0 0</pose>
+				<inertia>
+					<ixx>0.000001</ixx>
+					<iyy>0.000001</iyy>
+					<izz>0.000001</izz>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyz>0</iyz>
+				</inertia>
+			</inertial>
+      <sensor name='sonar0' type='ray'>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>320</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.479966</min_angle>
+              <max_angle>0.479966</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>5</max>
+            <resolution>0.01</resolution>
+          </range>
+        </ray>
+        <!--<plugin name='sonar0_plugin' filename='libim_gazebo_ros_sonar.so'>
+          <topicName>gazebo/sensor/Sonar0</topicName>
+          <frameName>sonar0_link</frameName>
+          <frameId>sonar0_link</frameId>
+          <radiation>ultrasound</radiation>
+          <fov>0.7</fov>
+          <gaussianNoise>0</gaussianNoise>
+        </plugin>-->
+        <always_on>1</always_on>
+        <update_rate>4</update_rate>
+        <visualize>0</visualize>
+        <pose>0.14 0 0.0275 0 -0 0</pose>
+      </sensor>
+		</link>			
+			<joint name="sonar0_joint" type="revolute">
+				<child>sonar0_link</child>
+				<parent>base_link</parent>
+				<axis>
+					<xyz>1 0 0</xyz>
+				</axis>
+			</joint>
+
+    </model>
+  </world>
+</sdf>

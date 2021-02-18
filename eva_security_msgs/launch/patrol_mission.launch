@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+
+	<node pkg="eva_security_msgs" type="patrol_mission_node.py" name="eva_security_patrol_mission_node" output="screen" >
+	
+		<rosparam file="$(find eva_security_msgs)/params/patrol_mission_params.yaml" command="load" />
+		<rosparam file="$(find eva_security_msgs)/params/missions.yaml" command="load" />
+	
+	</node>
+
+</launch>
